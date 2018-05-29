@@ -8,7 +8,7 @@
                 v-bind:class="{ 'btn-outline-secondary': this.isSuccessful, 'btn-outline-danger': this.isError }"
                 type="submit"
                 style="padding: 10px 15px; margin: 4px 2px; font-size: 17px; width: 70px"
-                v-on:click="seen = !seen, updateArtist(artist.key, artist), toggleText(), switchClick()"
+                v-on:click="seen = !seen; updateArtist(artist.key, artist); toggleText(); switchClick()"
                 >{{button.text}}</button>
             </nav>
             <!-- NAVBAR CODE END -->
@@ -89,6 +89,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     props: ["artist"],
     data: function () {
@@ -155,7 +156,7 @@ export default {
                 })
                 .then((responce) => {
                     console.log(responce.data);
-                    vue.getAllArtist();
+                    this.getAllArtist();
                     
                 })
                 .catch((error) => {
@@ -164,8 +165,31 @@ export default {
                     }
                 })
                   
-        },  
+        },
+        getAllArtist: function () {
+            this.axiosInstance.post('/read_all', {
+                })
+                .then((responce) => {
 
+                    this.artists = [];
+
+                    for (let elem in responce.data) {
+                        console.log(responce.data[elem]);
+                        this.artists.push(responce.data[elem]);
+                    }
+                    console.log(this.artists);
+                    
+                })
+                .catch((error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+            })
+        }  
+
+    },
+    created: function (){
+        this.getAllArtist();
     }   
 }
 </script>

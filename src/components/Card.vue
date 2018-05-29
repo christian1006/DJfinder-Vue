@@ -3,7 +3,7 @@
             <img class="card-img-top" src="../assets/dj.jpg" alt="Card image" style="width:100%; height:250px">
             <div class="card-body">
                 <h4 class="card-title">{{artist.name}}</h4>
-                <p class="card-text" id="ab" v-show="seen">{{artist}}</p>
+                <p class="card-text" id="ab" v-show="seen">{{artist.style}}</p>
                 <p class="card-text">Price: {{artist.price}}</p>
                 <button class="btn btn-primary" v-on:click="renderProfile">See profile</button>
             </div>
@@ -11,6 +11,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
     name: 'Card',
     props: ["artist"],
@@ -20,9 +21,11 @@ export default {
       }
     },
     computed: {
-        axiosInstance: function() {
-            return vue.axiosInstance;
-         }
+        axiosInstance: function () {
+            return axios.create({
+                baseURL: 'http://localhost:3001/api',
+            })
+        }
     },
     methods: {
         toggle: function () {
@@ -44,7 +47,7 @@ export default {
                 })
                 .then((responce) => {
                     console.log(responce.data);
-                    vue.getAllArtist();
+                    this.getAllArtist();
                     
                 })
                 .catch((error) => {
@@ -73,8 +76,31 @@ export default {
                         console.log(error);
                     }
             })
+        },
+        getAllArtist: function () {
+            this.axiosInstance.post('/read_all', {
+                })
+                .then((responce) => {
+
+                    this.artists = [];
+
+                    for (let elem in responce.data) {
+                        console.log(responce.data[elem]);
+                        this.artists.push(responce.data[elem]);
+                    }
+                    console.log(this.artists);
+                    
+                })
+                .catch((error) => {
+                    if(error) {
+                        console.log(error);
+                    }
+            })
         }
 
+    },
+    created: function (){
+        this.getAllArtist();
     }
 }
 </script>

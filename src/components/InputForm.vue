@@ -1,60 +1,82 @@
 <template>
-  <div id="app">
-    <h1>App</h1>
-    <InputForm/>
-      <div>
+    <div id="container">
+        <div>
+            <label for="name">Name:</label>
+            <br />
+            <input  type="text" name="name" v-model="artist.name">
+        </div>
 
-        <Card 
-        
-          v-for="artist in artists" 
-          v-bind:artist="artist" 
-          :key="artist.key"
-        />
-      </div>
-      <Profile
-          v-for="artist in artists" 
-          v-bind:artist="artist" 
-          :key="artist.key"
-      />
-  </div>
+        <div>
+            <label for="location">Location:</label>
+            <br />
+            <input type="text" name="location" v-model="artist.location">
+        </div>
+
+        <div>
+            <label for="price">Price:</label>
+            <br />
+            <input type="text" name="price" v-model="artist.price">
+        </div>
+
+        <div>
+            <label for="style">Style:</label>
+            <br />
+            <input type="text" name="style" v-model="artist.style">
+        </div>
+
+        <div>
+            <label for="dates">Dates:</label>
+            <br />
+            <input type="text" name="dates" v-model="artist.dates">
+        </div>
+
+
+        <div>
+            <label for="about">About:</label>
+            <br />
+            <textarea name="about" rows="4" cols="50" v-model="artist.about">
+                Some general info
+            </textarea>
+        </div>
+
+        <div>
+            <button id="submit" v-on:click="newArtist()">SUBMIT</button>
+        </div>
+
+        <div>
+            <button id="submit" v-on:click="getAllArtist">GET ALL ARTISTS</button>
+        </div>
+    </div>
 </template>
 
 <script>
 import axios from 'axios'
-import Card from './components/Card.vue'
-import Profile from './components/Profile.vue'
-import InputForm from './components/InputForm.vue'
-
 export default {
-  components: {
-    Card, Profile, InputForm
-  },
-  name: 'app',
-  data () {
-    return {
-      
-        artists: [],
-        artist: {
-            key: undefined,
-            name: undefined,
-            location: undefined,
-            price: undefined,
-            style: undefined,
-            dates: undefined,
-            about: undefined
-        },
-        currentArtist: {
-            key: undefined,
-            name: undefined,
-            location: undefined,
-            price: undefined,
-            style: undefined,
-            dates: undefined,
-            about: undefined
-        }
-    }
-  },
-  computed: {
+    
+        data: function () {
+            return {
+                artists: [],
+                artist: {
+                    key: undefined,
+                    name: undefined,
+                    location: undefined,
+                    price: undefined,
+                    style: undefined,
+                    dates: undefined,
+                    about: undefined
+                },
+                currentArtist: {
+                    key: undefined,
+                    name: undefined,
+                    location: undefined,
+                    price: undefined,
+                    style: undefined,
+                    dates: undefined,
+                    about: undefined
+                }
+            }
+    },
+    computed: {
         axiosInstance: function () {
             return axios.create({
                 baseURL: 'http://localhost:3001/api',
@@ -72,14 +94,16 @@ export default {
               this.currentArtist = newArtist; 
         },
         newArtist: function () {
-            
+            this.artists.push(this.artist);
             this.axiosInstance.post('/create', {
             newArtist: this.artist   
             })
                 .then((responce) => {
                     console.log(responce.data);
                     this.resetForm();
+                    // this.$emit('artist-saved', this.artist)
                     this.getAllArtist();
+                    
                     
                 })
                 .catch((error) => {
@@ -108,19 +132,19 @@ export default {
             })
         },
         getAllArtist: function () {
+            
             this.axiosInstance.post('/read_all', {
                 })
                 .then((responce) => {
 
                     this.artists = [];
-                    console.log(responce.data);
+
                     for (let elem in responce.data) {
                         console.log(responce.data[elem]);
                         this.artists.push(responce.data[elem]);
                     }
-                    
                     console.log(this.artists);
-                     console.log(responce.data);
+                    
                     
                 })
                 .catch((error) => {
@@ -141,19 +165,9 @@ export default {
     },
     created: function (){
         this.getAllArtist();
+    },
+    watch: function (){
+    this.artists();
     }
 }
 </script>
-
-<style>
-/* #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-} */
-
-
-</style>
