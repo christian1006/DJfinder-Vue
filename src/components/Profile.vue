@@ -2,7 +2,7 @@
             <div>
             <nav class="navbar justify-content-between" style="background-color: #e8eaf6 ">
                 <a class="navbar-brand">
-                    <img src="./img/logo2.png" style="height:40px">
+                    <img src="../assets/logo2.png" style="height:40px">
                 </a>
                 <button class="btn" 
                 v-bind:class="{ 'btn-outline-secondary': this.isSuccessful, 'btn-outline-danger': this.isError }"
@@ -25,7 +25,7 @@
                     <div class="col-md-3 col-sm-3 bg-light">
                         <h4>{{artist.name}}</h4>
                         <div class="user-wrapper">
-                            <img style="width:100%" src="./img/djdj.jpg" class="img-responsive" />
+                            <img style="width:100%" src="../assets/dj.jpg" class="img-responsive" />
                             <div class="mt-3 d-flex justify-content-around">
                                 <button class="btn btn-outline-info" style="width: 110px">Book Me</button>
                                 <button class="btn btn-outline-info">Send E-Mail</button>

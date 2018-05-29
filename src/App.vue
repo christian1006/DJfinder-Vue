@@ -8,13 +8,18 @@
           :key="artist.key"
         />
       </div>
+      <Profile
+          v-for="artist in artists" 
+          v-bind:artist="artist" 
+          :key="artist.key"
+      />
   </div>
 </template>
 
 <script>
 import axios from 'axios'
 import Card from './components/Card.vue'
-import Profile from './components/User-Profile.vue'
+import Profile from './components/Profile.vue'
 
 export default {
   components: {
