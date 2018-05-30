@@ -1,5 +1,6 @@
 <template>
-            <div>
+        <div>
+            I'm the profile
             <nav class="navbar justify-content-between" style="background-color: #e8eaf6 ">
                 <a class="navbar-brand">
                     <img src="../assets/logo2.png" style="height:40px">
@@ -99,7 +100,26 @@ export default {
         isError: false,
         button: {
             text: 'Edit',
-          }
+        },
+        artists: [],
+        artist: {
+            key: undefined,
+            name: undefined,
+            location: undefined,
+            price: undefined,
+            style: undefined,
+            dates: undefined,
+            about: undefined
+        },
+        currentArtist: {
+            key: undefined,
+            name: undefined,
+            location: undefined,
+            price: undefined,
+            style: undefined,
+            dates: undefined,
+            about: undefined
+        }
       }
     },
     computed: {

@@ -1,5 +1,6 @@
 <template>
         <div class="card" style="width:400px">
+            I'm a card
             <img class="card-img-top" src="../assets/dj.jpg" alt="Card image" style="width:100%; height:250px">
             <div class="card-body">
                 <h4 class="card-title">{{artist.name}}</h4>
@@ -14,10 +15,29 @@
 import axios from 'axios'
 export default {
     name: 'Card',
-    props: ["artist"],
     data: function () {
       return {
-        seen: true
+        seen: true,
+        artists: [],
+        artist: {
+            key: undefined,
+            name: undefined,
+            location: undefined,
+            price: undefined,
+            style: undefined,
+            dates: undefined,
+            about: undefined
+        },
+        currentArtist: {
+            key: undefined,
+            name: undefined,
+            location: undefined,
+            price: undefined,
+            style: undefined,
+            dates: undefined,
+            about: undefined
+        }
+        
       }
     },
     computed: {
@@ -33,6 +53,15 @@ export default {
             if (this.isFolder) {
                 this.open = !this.open
             }
+        },
+        setCurrentArtist: function(id) {
+
+            var result = this.artists.filter(function( obj ) {
+                return obj.key == id;
+              });
+
+              var newArtist = result[0];
+              this.currentArtist = newArtist; 
         },
         renderProfile: function() {
 
