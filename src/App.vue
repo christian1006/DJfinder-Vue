@@ -2,19 +2,15 @@
   <div id="app">
     <h1>App</h1>
     <InputForm/>
-      <div>
-
         <Card 
-        
-          v-for="artist in artists" 
-          v-bind:artist="artist" 
-          :key="artist.key"
+            v-for="artist in artists" 
+            v-bind:artist="artist" 
+            :key="artist.key"
         />
-      </div>
       <Profile
-          v-for="artist in artists" 
-          v-bind:artist="artist" 
-          :key="artist.key"
+            v-for="artist in artists" 
+            v-bind:artist="artist" 
+            :key="artist.key"
       />
   </div>
 </template>

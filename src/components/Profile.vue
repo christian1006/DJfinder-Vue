@@ -156,7 +156,8 @@ export default {
                 })
                 .then((responce) => {
                     console.log(responce.data);
-                    this.getAllArtist();
+                    this.$parent.$options.methods.getAllArtist.call(this.$parent)
+                    // this.getAllArtist();
                     
                 })
                 .catch((error) => {
