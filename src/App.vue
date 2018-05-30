@@ -10,7 +10,7 @@
       <Profile
             v-for="artist in artists" 
             v-bind:artist="artist" 
-            :key="artist.key"
+            :key="artist.name"
       />
   </div>
 </template>
