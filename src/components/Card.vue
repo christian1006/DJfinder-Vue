@@ -3,9 +3,9 @@
             I'm a card
             <img class="card-img-top" src="../assets/dj.jpg" alt="Card image" style="width:100%; height:250px">
             <div class="card-body">
-                <h4 class="card-title">{{store.local_state[this.key].name}}</h4>
-                <p class="card-text" id="ab" v-show="seen">{{store[this.key].style}}</p>
-                <p class="card-text">Price: {{store.local_state[this.key].price}}</p>
+                <h4 class="card-title">{{artist.name}}</h4>
+                <p class="card-text" id="ab" v-show="seen">{{artist.style}}</p>
+                <p class="card-text">Price: {{artist.price}}</p>
                 <button class="btn btn-primary" v-on:click="renderProfile">See profile</button>
             </div>
         </div>
@@ -14,35 +14,34 @@
 <script>
 
 import axios from 'axios'
-import store from '../store.js'
+import { mapActions } from 'vuex'
+import { mapMutations } from 'vuex'
 
 export default {
     
     name: 'Card',
-    data: function () {
-      return {
-        key,
-        store
-      }
+    data: function() {
+        return {key}
     },
-
+    computed: {
+        artist () {
+            return this.$store.state.artists[this.key]
+        }
         
-   
+    },
     methods: {
-        toggle: function () {
-            console.log|(this.props)
-            if (this.isFolder) {
-                this.open = !this.open
-            }
-        },
+
+
+
         setCurrentArtist: function(id) {
+            // still needs to be refactored for store compatibility
 
-            var result = this.store.store.filter(function( obj ) {
-                return obj.key == id;
-              });
+            // var result = this.store.filter(function( obj ) {
+            //     return obj.key == id;
+            //   });
 
-              var newArtist = result[0];
-              this.currentArtist = newArtist; 
+            //   var newArtist = result[0];
+            //   this.currentArtist = newArtist; 
         },
         renderProfile: function() {
 
@@ -74,33 +73,14 @@ export default {
                         console.log(error);
                     }
             })
-        },
-        getAllArtist: function () {
-            this.axiosInstance.post('/read_all', {
-                })
-                .then((responce) => {
-
-                    this.artists = [];
-
-                    for (let elem in responce.data) {
-                        console.log(responce.data[elem]);
-                        this.artists.push(responce.data[elem]);
-                    }
-                    console.log(this.artists);
-                    
-                })
-                .catch((error) => {
-                    if(error) {
-                        console.log(error);
-                    }
-            })
         }
+ 
 
     },
-        created: function (){
-            this.getAllArtist();
-            console.log('yo ')
-        }
+        // created: function (){
+        //     this.getAllArtist();
+        //     console.log('yo ')
+        // }
 
     
 }

@@ -1,24 +1,25 @@
 <template>
 <div>
         <Card 
-            v-for="artist in store.local_state" 
+            v-for="artist of artists" 
             :key="artist.key"
-            :store="store"
         />
 </div>        
 </template>
 
 <script>
 import Card from './Card.vue'
-import store from '../store.js'
 
 export default {
-    data: function() {
-            return { store }
-        },
+    computed: {
+        artists () {
+            return this.$store.state.artists
+        }
+        
+    },
     components: {
         Card
-  },
+    },
 }
 </script>
 

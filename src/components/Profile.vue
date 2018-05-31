@@ -91,6 +91,8 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
+
 export default {
     props: ["artists"],
     data: function () {
@@ -129,6 +131,11 @@ export default {
         }
     },
     methods: {
+        ...mapActions({
+            removeArtist: 'remove_artist',
+            updateArtist: 'update_artist',
+
+        }),
         toggle: function () {
             console.log|(this.props)
             if (this.isFolder) {
