@@ -24,5 +24,6 @@ new Vue({
   created: function (){
     this.read_all();
     console.log('yo ')
+    
 }
 })

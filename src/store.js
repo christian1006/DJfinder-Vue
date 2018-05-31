@@ -24,11 +24,11 @@ export default new Vuex.Store({
     },
     mutations: {
         add_artist (state, new_artist) { 
-            state.artists[this.nextID] = new_artist; 
+            this.state.artists[new_artist.key] = new_artist; 
             this.nextID++;
         },
         update_artist (state, id, newEntry) {
-            state.artists[id] = newEntry;
+            this.state.artists[id] = newEntry;
             
         },
         remove_artist (state,id) {
@@ -36,10 +36,10 @@ export default new Vuex.Store({
     
         },
         read_all(state) {
-            state = response.data; 
+            this.state = response.data; 
         },
         update_api (state) {
-            state = response.data; 
+            this.state = response.data; 
         }
         
         
@@ -59,13 +59,19 @@ export default new Vuex.Store({
         read_all (context) {
             api_connection.post('/read_all') 
                 .then((response) => {
-                    context.commit("add_artist", response.data);
+                    for (let key in response.data) {
+                        console.log(response.data[key])
+                        context.commit("add_artist", response.data[key]);
+                    };
+                    console.log(response.data)
+                    console.log(this.state)
                 })
                 .catch((error) => {
                     if(error) {	
                         console.log(error);
                     }
                 });
+                
         },
         update_artist(context, id, newEntry) {
             context.commit("update_artist");

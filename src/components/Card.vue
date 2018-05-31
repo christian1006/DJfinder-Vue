@@ -1,10 +1,9 @@
 <template>
         <div class="card" style="width:400px">
-            I'm a card
             <img class="card-img-top" src="../assets/dj.jpg" alt="Card image" style="width:100%; height:250px">
             <div class="card-body">
                 <h4 class="card-title">{{artist.name}}</h4>
-                <p class="card-text" id="ab" v-show="seen">{{artist.style}}</p>
+                <p class="card-text">{{artist.style}}</p>
                 <p class="card-text">Price: {{artist.price}}</p>
                 <button class="btn btn-primary" v-on:click="renderProfile">See profile</button>
             </div>
@@ -18,17 +17,8 @@ import { mapActions } from 'vuex'
 import { mapMutations } from 'vuex'
 
 export default {
-    
+    props: ['artist'],
     name: 'Card',
-    data: function() {
-        return {key}
-    },
-    computed: {
-        artist () {
-            return this.$store.state.artists[this.key]
-        }
-        
-    },
     methods: {
 
 

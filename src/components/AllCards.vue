@@ -2,6 +2,7 @@
 <div>
         <Card 
             v-for="artist of artists" 
+            :artist="artist"
             :key="artist.key"
         />
 </div>        
