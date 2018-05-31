@@ -92,7 +92,7 @@
 <script>
 import axios from 'axios'
 export default {
-    props: ["artist"],
+    props: ["artists"],
     data: function () {
       return {
         seen: true,
@@ -101,7 +101,6 @@ export default {
         button: {
             text: 'Edit',
         },
-        artists: [],
         artist: {
             key: undefined,
             name: undefined,

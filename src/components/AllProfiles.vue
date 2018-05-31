@@ -11,6 +11,7 @@
 <script>
 import Profile from './Profile.vue'
 export default {
+    props: ["artists"],
     components: {
         Profile
     }

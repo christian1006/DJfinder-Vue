@@ -3,50 +3,31 @@
             I'm a card
             <img class="card-img-top" src="../assets/dj.jpg" alt="Card image" style="width:100%; height:250px">
             <div class="card-body">
-                <h4 class="card-title">{{artist.name}}</h4>
-                <p class="card-text" id="ab" v-show="seen">{{artist.style}}</p>
-                <p class="card-text">Price: {{artist.price}}</p>
+                <h4 class="card-title">{{store.local_state[this.key].name}}</h4>
+                <p class="card-text" id="ab" v-show="seen">{{store[this.key].style}}</p>
+                <p class="card-text">Price: {{store.local_state[this.key].price}}</p>
                 <button class="btn btn-primary" v-on:click="renderProfile">See profile</button>
             </div>
         </div>
 </template>
 
 <script>
+
 import axios from 'axios'
+import store from '../store.js'
+
 export default {
+    
     name: 'Card',
     data: function () {
       return {
-        seen: true,
-        artists: [],
-        artist: {
-            key: undefined,
-            name: undefined,
-            location: undefined,
-            price: undefined,
-            style: undefined,
-            dates: undefined,
-            about: undefined
-        },
-        currentArtist: {
-            key: undefined,
-            name: undefined,
-            location: undefined,
-            price: undefined,
-            style: undefined,
-            dates: undefined,
-            about: undefined
-        }
-        
+        key,
+        store
       }
     },
-    computed: {
-        axiosInstance: function () {
-            return axios.create({
-                baseURL: 'http://localhost:3001/api',
-            })
-        }
-    },
+
+        
+   
     methods: {
         toggle: function () {
             console.log|(this.props)
@@ -56,7 +37,7 @@ export default {
         },
         setCurrentArtist: function(id) {
 
-            var result = this.artists.filter(function( obj ) {
+            var result = this.store.store.filter(function( obj ) {
                 return obj.key == id;
               });
 
@@ -71,19 +52,7 @@ export default {
         },
 
         removeArtist: function (id) {
-            this.axiosInstance.post('/remove', {
-                    id: id
-                })
-                .then((responce) => {
-                    console.log(responce.data);
-                    this.getAllArtist();
-                    
-                })
-                .catch((error) => {
-                    if(error) {
-                        console.log(error);
-                    }
-                })
+            this.store.remove(id);
                   
         },
         updateArtist: function (key, newValue) {
@@ -97,7 +66,7 @@ export default {
                 .then((responce) => {
                     console.log(responce.data.about);
                     responce.data.about = this.artist.about
-                    // vue.getAllArtist();
+                    
                     
                 })
                 .catch((error) => {
@@ -128,8 +97,11 @@ export default {
         }
 
     },
-    created: function (){
-        this.getAllArtist();
-    }
+        created: function (){
+            this.getAllArtist();
+            console.log('yo ')
+        }
+
+    
 }
 </script>

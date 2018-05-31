@@ -49,11 +49,12 @@
 
 <script>
 import axios from 'axios'
+import store from '../store.js'
 export default {
     
         data: function () {
             return {
-   
+                store: store,
                 artist: {
                     key: undefined,
                     name: undefined,
@@ -66,33 +67,11 @@ export default {
 
             }
     },
-    computed: {
-        axiosInstance: function () {
-            return axios.create({
-                baseURL: 'http://localhost:3001/api',
-            })
-        }
-    },
+
     methods: {
 
         newArtist: function () {
-            
-            this.axiosInstance.post('/create', {
-            newArtist: this.artist   
-            })
-                .then((responce) => {
-                    console.log(responce.data);
-                    this.resetForm();
-                    this.$parent.$options.methods.getAllArtist.call(this.$parent)
-                    
-                    
-                })
-                .catch((error) => {
-                    if(error) {
-                        console.log(error);
-                    }
-            })
-
+            this.store.create(this.artist)
             
         },
 
