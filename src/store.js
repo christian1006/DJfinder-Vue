@@ -23,16 +23,19 @@ export default new Vuex.Store({
         }
     },
     mutations: {
-        add_artist (state, new_artist) { 
+        add_artist (state, new_artist) {
             this.state.artists[new_artist.key] = new_artist; 
             this.nextID++;
+            
         },
         update_artist (state, id, newEntry) {
             this.state.artists[id] = newEntry;
             
         },
         remove_artist (state,id) {
-            delete state.artists[id];
+            console.log(id)
+            delete this.state.artists[id];
+            console.log(this.state.artists)
     
         },
         read_all(state) {
@@ -41,21 +44,26 @@ export default new Vuex.Store({
         update_api (state) {
             this.state = response.data; 
         }
-        
-        
 
     },
     actions: {
         add_artist(context, new_artist) {
-            context.commit("add_artist");
-            this.update_api();
-            
+            console.log(new_artist)
+            api_connection.post('/create', {
+                    newArtist: new_artist
+                })
+                .then((response) => {
+                    console.log(response.data)
+                    context.commit("add_artist", response.data);
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
             
         },
-        remove_artist(context, id) {
-            context.commit("remove_artist");
-            this.update_api();
-           
+        remove_artist (context, id) {
+            context.commit("remove_artist", id);
+            context.dispatch('update_api') 
         },
         read_all (context) {
             api_connection.post('/read_all') 
@@ -78,14 +86,14 @@ export default new Vuex.Store({
             context.commit("update_artist");
             this.update_api()
         },
-
         update_api (context) {
-            this.api_connection.post('/update', {
-                state: state
+            api_connection.post('/sync', {
+                state: this.state
             }) 
                     .then((response) => {
                         // this.state = response.data;
-                        context.commit("add_artist", response.data);
+                        // context.commit("add_artist", response.data);
+                        console.log(response.data)
                     })
                     .catch((error) => {
                         if(error) {	

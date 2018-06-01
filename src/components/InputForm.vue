@@ -1,5 +1,5 @@
 <template>
-    <div id="container">
+    <form>
         <div>
             <label for="name">Name:</label>
             <br />
@@ -40,44 +40,37 @@
         </div>
 
         <div>
-            <button id="submit" v-on:click="newArtist()">SUBMIT</button>
+            <button id="submit" v-on:click="newArtist(artist)">SUBMIT</button>
         </div>
 
 
-    </div>
+    </form>
 </template>
 
 <script>
 import axios from 'axios'
 import store from '../store.js'
+import { mapActions } from 'vuex'
 export default {
-    
-        data: function () {
-            return {
-                store: store,
-                artist: {
-                    key: undefined,
-                    name: undefined,
-                    location: undefined,
-                    price: undefined,
-                    style: undefined,
-                    dates: undefined,
-                    about: undefined
-                },
 
-            }
+    computed: {
+        artist () {
+            return this.$store.state.artist
+        }
+    
     },
 
     methods: {
 
-        newArtist: function () {
-            this.store.create(this.artist)
+        ...mapActions({
+            newArtist: 'add_artist',
             
-        },
+        }),
 
 
         resetForm: function() {
             Object.keys(this.artist).forEach( key => this.artist[key] = '');
+            
         }
     },
 

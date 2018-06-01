@@ -67,10 +67,6 @@ export default {
  
 
     },
-        // created: function (){
-        //     this.getAllArtist();
-        //     console.log('yo ')
-        // }
 
     
 }
