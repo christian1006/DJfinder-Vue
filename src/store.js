@@ -50,10 +50,11 @@ export default new Vuex.Store({
             context.commit("add_artist");
             this.update_api();
             
+            
         },
         remove_artist(context, id) {
             context.commit("remove_artist");
-            this.update_api() 
+            this.update_api();
            
         },
         read_all (context) {
@@ -93,11 +94,7 @@ export default new Vuex.Store({
                     });
         },
     },    
-    // getters: {
-    //     read_one (id) {
-    //         return state[id];
-    //     },
-    // }
+
 })
 		
 

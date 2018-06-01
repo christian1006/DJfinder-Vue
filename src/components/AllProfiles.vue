@@ -1,9 +1,9 @@
 <template>
     <div>
         <Profile
-            v-for="artist in artists" 
-            v-bind:artist="artist" 
-            :key="artist.name"
+            v-for="artist of artists" 
+            :artist="artist" 
+            :key="artist.key"
       />
     </div>
 </template>
@@ -11,7 +11,12 @@
 <script>
 import Profile from './Profile.vue'
 export default {
-    props: ["artists"],
+    computed: {
+        artists () {
+            return this.$store.state.artists
+        }
+        
+    },
     components: {
         Profile
     }
