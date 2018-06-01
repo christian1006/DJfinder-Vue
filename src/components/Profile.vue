@@ -93,7 +93,7 @@ import axios from 'axios'
 import { mapActions } from 'vuex'
 
 export default {
-    props: ["artist"],
+    props: ["artist", "id"],
     data: function () {
       return {
         seen: true,
