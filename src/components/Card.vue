@@ -5,7 +5,10 @@
                 <h4 class="card-title">{{artist.name}}</h4>
                 <p class="card-text">{{artist.style}}</p>
                 <p class="card-text">Price: {{artist.price}}</p>
-                <button class="btn btn-primary" v-on:click="renderProfile">See profile</button>
+                <router-link :to="/profile/"
+                class="btn btn-info"
+                >See profile</router-link>
+                
             </div>
         </div>
 </template>
@@ -17,7 +20,7 @@ import { mapActions } from 'vuex'
 import { mapMutations } from 'vuex'
 
 export default {
-    props: ['artist'],
+    props: ['artist', 'id', 'route'],
     name: 'Card',
     methods: {
 
@@ -67,10 +70,6 @@ export default {
  
 
     },
-        // created: function (){
-        //     this.getAllArtist();
-        //     console.log('yo ')
-        // }
 
     
 }
