@@ -93,7 +93,7 @@ import axios from 'axios'
 import { mapActions } from 'vuex'
 
 export default {
-    props: ["artist", "id"],
+    props: ["id"],
     data: function () {
       return {
         seen: true,
@@ -103,15 +103,6 @@ export default {
             text: 'Edit',
         },
         
-        currentArtist: {
-            key: undefined,
-            name: undefined,
-            location: undefined,
-            price: undefined,
-            style: undefined,
-            dates: undefined,
-            about: undefined
-        }
       }
     },
     computed: {
@@ -119,6 +110,9 @@ export default {
             return axios.create({
                 baseURL: 'http://localhost:3001/api',
             })
+        },
+        artist() {
+            return this.$store.state.artists[this.id]
         }
     },
     methods: {
