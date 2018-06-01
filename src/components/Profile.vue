@@ -1,5 +1,5 @@
 <template>
-            <div>
+        <div>
             <nav class="navbar justify-content-between" style="background-color: #e8eaf6 ">
                 <a class="navbar-brand">
                     <img src="../assets/logo2.png" style="height:40px">
@@ -90,6 +90,8 @@
 
 <script>
 import axios from 'axios'
+import { mapActions } from 'vuex'
+
 export default {
     props: ["artist"],
     data: function () {
@@ -99,7 +101,17 @@ export default {
         isError: false,
         button: {
             text: 'Edit',
-          }
+        },
+        
+        currentArtist: {
+            key: undefined,
+            name: undefined,
+            location: undefined,
+            price: undefined,
+            style: undefined,
+            dates: undefined,
+            about: undefined
+        }
       }
     },
     computed: {
@@ -110,12 +122,11 @@ export default {
         }
     },
     methods: {
-        toggle: function () {
-            console.log|(this.props)
-            if (this.isFolder) {
-                this.open = !this.open
-            }
-        },
+        ...mapActions({
+            removeArtist: 'remove_artist',
+            updateArtist: 'update_artist',
+
+        }),
         updateArtist: function (id, newObject) {
 
             console.log(id)
@@ -150,23 +161,23 @@ export default {
                 this.isSuccessful = true;
             }
         },
-        removeArtist: function (id) {
-            this.axiosInstance.post('/remove', {
-                    id: id
-                })
-                .then((responce) => {
-                    console.log(responce.data);
-                    this.$parent.$options.methods.getAllArtist.call(this.$parent)
-                    // this.getAllArtist();
+        // removeArtist: function (id) {
+        //     this.axiosInstance.post('/remove', {
+        //             id: id
+        //         })
+        //         .then((responce) => {
+        //             console.log(responce.data);
+        //             this.$parent.$options.methods.getAllArtist.call(this.$parent)
+        //             // this.getAllArtist();
                     
-                })
-                .catch((error) => {
-                    if(error) {
-                        console.log(error);
-                    }
-                })
+        //         })
+        //         .catch((error) => {
+        //             if(error) {
+        //                 console.log(error);
+        //             }
+        //         })
                   
-        },
+        // },
         getAllArtist: function () {
             this.axiosInstance.post('/read_all', {
                 })
