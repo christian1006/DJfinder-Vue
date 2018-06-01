@@ -130,7 +130,7 @@ export default {
                    id: id
                 })
                 .then((responce) => {
-                    console.log(responce.data);
+                    // console.log(responce.data);
                 })
                 .catch((error) => {
                     if(error) {
@@ -155,23 +155,7 @@ export default {
                 this.isSuccessful = true;
             }
         },
-        // removeArtist: function (id) {
-        //     this.axiosInstance.post('/remove', {
-        //             id: id
-        //         })
-        //         .then((responce) => {
-        //             console.log(responce.data);
-        //             this.$parent.$options.methods.getAllArtist.call(this.$parent)
-        //             // this.getAllArtist();
-                    
-        //         })
-        //         .catch((error) => {
-        //             if(error) {
-        //                 console.log(error);
-        //             }
-        //         })
-                  
-        // },
+ 
         getAllArtist: function () {
             this.axiosInstance.post('/read_all', {
                 })
@@ -180,10 +164,10 @@ export default {
                     this.artists = [];
 
                     for (let elem in responce.data) {
-                        console.log(responce.data[elem]);
+                        // console.log(responce.data[elem]);
                         this.artists.push(responce.data[elem]);
                     }
-                    console.log(this.artists);
+                    
                     
                 })
                 .catch((error) => {
@@ -194,9 +178,9 @@ export default {
         }  
 
     },
-    created: function (){
-        this.getAllArtist();
-    }   
+    // created: function (){
+    //     this.getAllArtist();
+    // }   
 }
 </script>
 

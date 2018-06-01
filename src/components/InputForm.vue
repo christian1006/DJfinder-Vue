@@ -40,7 +40,7 @@
         </div>
 
         <div>
-            <button id="submit" v-on:click="newArtist(artist)">SUBMIT</button>
+            <button id="submit" v-on:click="redirect()">SUBMIT</button>
         </div>
 
 
@@ -51,27 +51,45 @@
 import axios from 'axios'
 import store from '../store.js'
 import { mapActions } from 'vuex'
-export default {
 
-    computed: {
-        artist () {
-            return this.$store.state.artist
+export default {
+    data: function(){
+        return {
+            artist: {
+                key: undefined,
+                name: undefined,
+                location: undefined,
+                price: undefined,
+                style: undefined,
+                dates: undefined,
+                about: undefined
+            }
         }
-    
     },
+    // computed: {
+    //     artist () {
+    //         return this.$store.state.artist
+    //     }
+    
+    // },
 
     methods: {
 
         ...mapActions({
-            newArtist: 'add_artist',
-            
+            newArtist: 'add_artist'
         }),
 
-
-        resetForm: function() {
-            Object.keys(this.artist).forEach( key => this.artist[key] = '');
+        redirect: function() {
+            console.log(Object.values(this.artist) + " - inputform.vue")
+            this.newArtist(this.artist);
             
-        }
+        },
+
+
+        // resetForm: function() {
+        //     Object.keys(this.artist).forEach( key => this.artist[key] = '');
+            
+        // }
     },
 
 

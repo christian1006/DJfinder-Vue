@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import Axios from 'axios'
+import router from './router'
 
 let api_connection = Axios.create({
     baseURL: "http://localhost:3001/api"
@@ -11,16 +12,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
 	state: {
         artists: {},
-        nextID: 1,
-        artist: {
-            key: undefined,
-            name: undefined,
-            location: undefined,
-            price: undefined,
-            style: undefined,
-            dates: undefined,
-            about: undefined
-        }
+
     },
     mutations: {
         add_artist (state, new_artist) {
@@ -33,9 +25,9 @@ export default new Vuex.Store({
             
         },
         remove_artist (state,id) {
-            console.log(id)
+            
             delete this.state.artists[id];
-            console.log(this.state.artists)
+            
     
         },
         read_all(state) {
@@ -48,13 +40,13 @@ export default new Vuex.Store({
     },
     actions: {
         add_artist(context, new_artist) {
-            console.log(new_artist)
             api_connection.post('/create', {
                     newArtist: new_artist
                 })
                 .then((response) => {
-                    console.log(response.data)
+                    console.log('in add add_artist')
                     context.commit("add_artist", response.data);
+                    router.push('/profile/' + response.data.key)
                 })
                 .catch((err) => {
                     console.log(err)
@@ -69,11 +61,9 @@ export default new Vuex.Store({
             api_connection.post('/read_all') 
                 .then((response) => {
                     for (let key in response.data) {
-                        console.log(response.data[key])
                         context.commit("add_artist", response.data[key]);
                     };
-                    console.log(response.data)
-                    console.log(this.state)
+
                 })
                 .catch((error) => {
                     if(error) {	
@@ -91,9 +81,7 @@ export default new Vuex.Store({
                 state: this.state
             }) 
                     .then((response) => {
-                        // this.state = response.data;
-                        // context.commit("add_artist", response.data);
-                        console.log(response.data)
+                        // console.log(response.data)
                     })
                     .catch((error) => {
                         if(error) {	
