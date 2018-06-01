@@ -36,27 +36,25 @@ export default {
             //   var newArtist = result[0];
             //   this.currentArtist = newArtist; 
         },
-        renderProfile: function() {
+        // renderProfile: function() {
 
-            console.log(this.artist.key)
-            this.$parent.$options.methods.setCurrentArtist.call(vue, this.artist.key)
+        //     console.log(this.artist.key)
+        //     this.$parent.$options.methods.setCurrentArtist.call(vue, this.artist.key)
 
-        },
+        // },
 
         removeArtist: function (id) {
             this.store.remove(id);
                   
         },
         updateArtist: function (key, newValue) {
-            
-            console.log(key)
-            console.log(newValue)
+
             this.axiosInstance.post('/update', {
                    newArtist: newValue,
                    id: key
                 })
                 .then((responce) => {
-                    console.log(responce.data.about);
+                    
                     responce.data.about = this.artist.about
                     
                     

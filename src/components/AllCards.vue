@@ -4,7 +4,6 @@
             v-for="artist of artists" 
             :artist="artist"
             :key="artist.key"
-            :route="`/profile/${artist.key}`"
         />
 </div>        
 </template>
