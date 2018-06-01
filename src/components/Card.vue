@@ -5,7 +5,7 @@
                 <h4 class="card-title">{{artist.name}}</h4>
                 <p class="card-text">{{artist.style}}</p>
                 <p class="card-text">Price: {{artist.price}}</p>
-                <router-link :to="/profile/"
+                <router-link :to="{ path: '/profile/' + artist.key}"
                 class="btn btn-info"
                 >See profile</router-link>
                 
