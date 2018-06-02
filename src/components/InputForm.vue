@@ -1,5 +1,5 @@
 <template>
-    <form>
+    <div>
         <div>
             <label for="name">Name:</label>
             <br />
@@ -44,7 +44,7 @@
         </div>
 
 
-    </form>
+    </div>
 </template>
 
 <script>

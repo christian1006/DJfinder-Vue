@@ -4,11 +4,17 @@ import AllCards from '../components/AllCards.vue'
 import AllProfiles from '../components/AllProfiles.vue'
 import Profile from '../components/Profile.vue'
 import InputForm from '../components/InputForm.vue'
+import CoverPage from '../components/CoverPage.vue'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/',
+      name: 'CoverPage',
+      component: CoverPage
+    },
     {
       path: '/cards',
       name: 'Cards',
@@ -20,7 +26,7 @@ export default new Router({
       component: AllProfiles
     },
     {
-      path: '/',
+      path: '/register',
       name: 'InputForm',
       component: InputForm
     },
