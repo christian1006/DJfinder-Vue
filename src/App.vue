@@ -1,10 +1,27 @@
 <template>
 <div id="app">
-    <h1>LOL</h1>
-    <router-link to="/cards">Cards</router-link>
-    <router-link to="/profiles">Profiles</router-link>
-    <router-link to="/">InputForm</router-link>
-    <router-view></router-view>
+
+
+
+   
+
+  <nav class="navbar justify-content-between" style="background-color: #e8eaf6 ">
+    
+      <a class="navbar-brand">
+          <img src="./assets/logo2.png" style="height:40px">
+      </a>
+      <div justify-content-right>
+            <router-link class="btn" to="/cards">Cards</router-link>
+            <router-link class="btn" to="/profiles">Profiles</router-link>
+            <router-link class="btn" to="/register">InputForm</router-link>
+            <router-link class="btn" to="/">Main</router-link>
+
+      </div>
+      
+  </nav>
+   
+
+<router-view></router-view>
 
 </div>
 </template>
@@ -28,6 +45,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
-}
+ }
 </style>
