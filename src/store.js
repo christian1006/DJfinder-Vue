@@ -56,6 +56,7 @@ export default new Vuex.Store({
         remove_artist (context, id) {
             context.commit("remove_artist", id);
             context.dispatch('update_api') 
+            router.push('/')
         },
         read_all (context) {
             api_connection.post('/read_all') 

@@ -6,20 +6,6 @@ import router from './router'
 import Vuex from 'vuex'
 import store from './store.js'
 import { mapActions } from 'vuex'
-// import Vuetify from 'vuetify'
-
-// import 'vue-awesome/icons/flag'
-
-
-// import 'vue-awesome/icons'
-
-// Vue.component('icon', Icon)
-
-// import Icon from 'vue-awesome/components/Icon'
-
-// import 'vuetify/dist/vuetify.min.css' 
-
-// Vue.use(Vuetify)
 
 
 Vue.use(VueAxios, axios)

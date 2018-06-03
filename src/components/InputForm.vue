@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="py-5">
         <div>
             <label for="name">Name:</label>
             <br />
@@ -40,8 +40,11 @@
         </div>
 
         <div>
-            <button id="submit" v-on:click="redirect()">SUBMIT</button>
+            <button class="btn btn-primary" v-on:click="redirect()">SUBMIT</button>
         </div>
+
+
+
 
 
     </div>
@@ -66,12 +69,6 @@ export default {
             }
         }
     },
-    // computed: {
-    //     artist () {
-    //         return this.$store.state.artist
-    //     }
-    
-    // },
 
     methods: {
 
@@ -86,10 +83,6 @@ export default {
         },
 
 
-        // resetForm: function() {
-        //     Object.keys(this.artist).forEach( key => this.artist[key] = '');
-            
-        // }
     },
 
 

@@ -1,34 +1,35 @@
 <template>
-        <div>
-            <nav class="navbar justify-content-between" style="background-color: #e8eaf6 ">
-                <a class="navbar-brand">
-                    <img src="../assets/logo2.png" style="height:40px">
-                </a>
-                <button class="btn" 
-                v-bind:class="{ 'btn-outline-secondary': this.isSuccessful, 'btn-outline-danger': this.isError }"
-                type="submit"
-                style="padding: 10px 15px; margin: 4px 2px; font-size: 17px; width: 70px"
-                v-on:click="seen = !seen; updateArtist(artist.key, artist); toggleText(); switchClick()"
-                >{{button.text}}</button>
-            </nav>
-            <!-- NAVBAR CODE END -->
-            <div class="container">
+        
+            <div class="container ">
                 <div class="row">
-                    <div class="col-md-12 text-center">
-                        <h2 style="padding: 25px">{{artist.name}}'s Profile Page</h2>
-                        <br />
-                    </div>
+                    <div class="container-fluid row">
+                        <h2 style="padding: 35px;" class="mx-auto">{{artist.name}}'s Profile Page</h2>
+                        </div>
+                        <div class=" container-fluid row d-flex justify-content-end">
+                            <button class="btn" 
+                                v-bind:class="{ 'btn-outline-secondary': this.isSuccessful, 'btn-outline-danger': this.isError }"
+                                type="submit"
+                                style="padding: 5px 5px; margin-bottom: 5px; font-size: 17px; width: 80px; height:60px"
+                                v-on:click="seen = !seen; updateArtist(artist.key, artist); toggleText(); switchClick()"
+                                >{{button.text}}</button>
+
+                        </div>
+
+                    
+ 
                 </div>
 
                 <!-- USER PROFILE ROW STARTS-->
-                <div class="row">
+                <div class="row container-fluid row">
                     <div class="col-md-3 col-sm-3 bg-light">
-                        <h4>{{artist.name}}</h4>
+                            <input id="updateInput" type="text" v-show="!seen" v-model="artist.name">
+                            <!-- <span v-show="seen">{{artist.price}}</span> -->
+                        <h4 v-show="seen">{{artist.name}}</h4>
                         <div class="user-wrapper">
                             <img style="width:100%" src="../assets/dj.jpg" class="img-responsive" />
                             <div class="mt-3 d-flex justify-content-around">
-                                <button class="btn btn-outline-info" style="width: 110px">Book Me</button>
-                                <button class="btn btn-outline-info">Send E-Mail</button>
+                                <button class="btn btn-outline-info" style="width: 120px; padding: 20px 5px;">Book Me</button>
+                                <button class="btn btn-outline-info" style="width: 120px; padding: 20px 5px;">Send E-Mail</button>
                             </div>
                         </div>
                     </div>
@@ -85,7 +86,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        
 </template>
 
 <script>
