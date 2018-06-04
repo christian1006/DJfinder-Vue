@@ -1,6 +1,8 @@
 <template>
-<div>
+<!-- <div class="d-flex align-content-center flex-wrap"> -->
+    <div class="row justify-content-md-center">
         <Card 
+             class="col-3"
             v-for="artist of artists" 
             :artist="artist"
             :key="artist.key"

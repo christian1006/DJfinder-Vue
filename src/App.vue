@@ -1,22 +1,15 @@
 <template>
 <div id="app">
 
-
-
-   
-
-  <nav class="navbar justify-content-between" style="background-color: #e8eaf6 ">
+  <nav class="navbar navbar-dark  pink darken-4 z-depth-3 justify-content-between">
     
       <a class="navbar-brand">
-          <img src="./assets/logo2.png" style="height:40px">
+        <router-link to="/"><img src="./assets/logow3.png" style="height:23px"></router-link>
       </a>
-      <div justify-content-right>
-            <router-link class="btn" to="/cards">Cards</router-link>
-            <router-link class="btn" to="/profiles">Profiles</router-link>
-            <router-link class="btn" to="/register">InputForm</router-link>
-            <router-link class="btn" to="/">Main</router-link>
-
-      </div>
+     <form class="form-inline my-2 my-lg-0 ml-auto">
+        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">About</button>
+        <button class="btn btn-outline-white btn-md my-2 my-sm-0 ml-3" type="submit">Contacts</button>
+    </form>
       
   </nav>
    

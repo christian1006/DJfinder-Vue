@@ -1,10 +1,16 @@
 <template>
-        <div class="card" style="width:400px">
-            <img class="card-img-top" src="../assets/dj.jpg" alt="Card image" style="width:100%; height:250px">
-            <div class="card-body">
-                <h4 class="card-title">{{artist.name}}</h4>
-                <p class="card-text">{{artist.style}}</p>
-                <p class="card-text">Price: {{artist.price}}</p>
+        <div class="card hoverable my-5 mx-3" style=" width:300px">
+              <div class="view overlay z-depth-3">
+                <img class="card-img-top" src="../assets/dj.jpg" alt="Card image cap">
+                    <a>
+                        <div class="mask waves-effect rgba-white-slight"></div>
+                    </a>
+             </div>
+           
+            <div class="card-body text-center">
+                <h3 class="card-title">{{artist.name}}</h3>
+                <h5 class="py-2">Style: {{artist.style}}</h5>
+                <h5 class="text">Price: {{artist.price}}</h5>
                 <router-link :to="{ path: '/profile/' + artist.key}"
                 class="btn btn-info"
                 >See profile</router-link>
